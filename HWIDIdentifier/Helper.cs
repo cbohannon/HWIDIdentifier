@@ -19,6 +19,18 @@ namespace HWIDIdentifier
                 return regeditObject.Read(profileKey);
             }
         }
+
+        public static class PCGuid
+        {
+            // Note that in the HWIDIdentifier project poperties, I had to uncheck Prefer 32-bit for this method call to work properly
+            public static Regedit regeditObject = new Regedit(@"SOFTWARE\Microsoft\Cryptography");
+            public static readonly string machineKey = "MachineGuid";
+
+            public static string GetValue()
+            {
+                return regeditObject.Read(machineKey);
+            }
+        }
         public class Regedit
         {
             private string regeditPath = string.Empty;

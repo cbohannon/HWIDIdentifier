@@ -25,9 +25,14 @@ namespace HWIDIdentifier
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {            
+        private void Button_Identify_HWID_Click(object sender, RoutedEventArgs e)
+        {
             Label_HWID.Content = Helper.HWID.GetValue();
+        }
+
+        private void Button_Identify_PCGuid_Click(object sender, RoutedEventArgs e)
+        {
+            Label_PCGuid.Content = Helper.PCGuid.GetValue();
         }
     }
 }
