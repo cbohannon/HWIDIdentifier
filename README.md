@@ -1,0 +1,2 @@
+# HWIDIdentifier
+HWID-Identifier
