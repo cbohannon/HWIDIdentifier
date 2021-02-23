@@ -17,5 +17,6 @@
         <Label x:Name="Label_PCName" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,158,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
         <Button x:Name="Button_Identify_ProductID" Content="ProductID" HorizontalAlignment="Left" Margin="22,204,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_ProductID_Click"/>
         <Label x:Name="label_ProductID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,201,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
+        <Button x:Name="Button_Exit" Content="E_xit" HorizontalAlignment="Left" Margin="707,389,0,0" VerticalAlignment="Top" Width="75" Click="Button_Exit_Click"/>
     </Grid>
 </Window>

@@ -44,5 +44,10 @@ namespace HWIDIdentifier
         {
             label_ProductID.Content = ReadHelper.ProductId.GetValue();
         }
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
