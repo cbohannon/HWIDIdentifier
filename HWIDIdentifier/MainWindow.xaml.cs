@@ -27,12 +27,22 @@ namespace HWIDIdentifier
 
         private void Button_Identify_HWID_Click(object sender, RoutedEventArgs e)
         {
-            Label_HWID.Content = Helper.HWID.GetValue();
+            Label_HWID.Content = ReadHelper.HWID.GetValue();
         }
 
         private void Button_Identify_PCGuid_Click(object sender, RoutedEventArgs e)
         {
-            Label_PCGuid.Content = Helper.PCGuid.GetValue();
+            Label_PCGuid.Content = ReadHelper.PCGuid.GetValue();
+        }
+
+        private void Button_Identify_PCName_Click(object sender, RoutedEventArgs e)
+        {
+            Label_PCName.Content = ReadHelper.PCName.GetValue();
+        }
+
+        private void Button_Identify_ProductID_Click(object sender, RoutedEventArgs e)
+        {
+            label_ProductID.Content = ReadHelper.ProductId.GetValue();
         }
     }
 }

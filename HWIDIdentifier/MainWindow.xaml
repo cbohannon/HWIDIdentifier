@@ -9,9 +9,13 @@
     <Grid>
         <Button x:Name="Button_Identify_HWID" Content="HWID" HorizontalAlignment="Left" Margin="22,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_HWID_Click"/>
         <Label x:Name="Label_Identify" Content="Identify" HorizontalAlignment="Left" Margin="22,43,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Label_HWID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,74,0,0" VerticalAlignment="Top" Width="402"/>
+        <Label x:Name="Label_HWID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,74,0,0" VerticalAlignment="Top" Width="277"/>
         <Label x:Name="Label_Original_Value" Content="Original Value" HorizontalAlignment="Left" Margin="102,43,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
         <Button x:Name="Button_Identify_PCGuid" Content="PCGuid" HorizontalAlignment="Left" Margin="22,120,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_PCGuid_Click"/>
-        <Label x:Name="Label_PCGuid" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Height="29" Margin="102,115,0,0" VerticalAlignment="Top" Width="402"/>
+        <Label x:Name="Label_PCGuid" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Height="29" Margin="102,115,0,0" VerticalAlignment="Top" Width="277"/>
+        <Button x:Name="Button_Identify_PCName" Content="PCName" HorizontalAlignment="Left" Margin="22,161,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_PCName_Click"/>
+        <Label x:Name="Label_PCName" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,158,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
+        <Button x:Name="Button_Identify_ProductID" Content="ProductID" HorizontalAlignment="Left" Margin="22,204,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_ProductID_Click"/>
+        <Label x:Name="label_ProductID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,201,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
     </Grid>
 </Window>
