@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Management;
 
 namespace HWIDIdentifier
 {
@@ -48,6 +49,31 @@ namespace HWIDIdentifier
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void Button_Identify_HDD_Click(object sender, RoutedEventArgs e)
+        {
+            ManagementObjectSearcher managementObjectSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
+
+            foreach (ManagementObject managementObject in managementObjectSearcher.Get())
+            {
+                TreeViewItem hddItemIdParent = new TreeViewItem();
+                hddItemIdParent.Header = managementObject["DeviceID"].ToString();
+
+                TreeViewItem childItemModel = new TreeViewItem();
+                childItemModel.Header = "Model: " + managementObject["Model"].ToString();
+                hddItemIdParent.Items.Add(childItemModel);
+
+                TreeViewItem childItemInterfaceType = new TreeViewItem();
+                childItemInterfaceType.Header = "Interface: " + managementObject["InterfaceType"].ToString();
+                hddItemIdParent.Items.Add(childItemInterfaceType);
+
+                TreeViewItem childItemSerialNumber = new TreeViewItem();
+                childItemSerialNumber.Header = "Serial#: " + managementObject["SerialNumber"].ToString();
+                hddItemIdParent.Items.Add(childItemSerialNumber);
+
+                treeView_HDD.Items.Add(hddItemIdParent);
+            }
         }
     }
 }
