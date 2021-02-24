@@ -53,23 +53,37 @@ namespace HWIDIdentifier
 
         private void Button_Identify_HDD_Click(object sender, RoutedEventArgs e)
         {
+            DiskDriveHelper();
+        }
+
+        private void DiskDriveHelper()
+        {
+            // Manually added System.Management to References and using System.Management (maybe a bug in .Net)
             ManagementObjectSearcher managementObjectSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
 
             foreach (ManagementObject managementObject in managementObjectSearcher.Get())
             {
-                TreeViewItem hddItemIdParent = new TreeViewItem();
-                hddItemIdParent.Header = managementObject["DeviceID"].ToString();
+                TreeViewItem hddItemIdParent = new TreeViewItem
+                {
+                    Header = managementObject["DeviceID"].ToString()
+                };
 
-                TreeViewItem childItemModel = new TreeViewItem();
-                childItemModel.Header = "Model: " + managementObject["Model"].ToString();
+                TreeViewItem childItemModel = new TreeViewItem
+                {
+                    Header = "Model: " + managementObject["Model"].ToString()
+                };
                 hddItemIdParent.Items.Add(childItemModel);
 
-                TreeViewItem childItemInterfaceType = new TreeViewItem();
-                childItemInterfaceType.Header = "Interface: " + managementObject["InterfaceType"].ToString();
+                TreeViewItem childItemInterfaceType = new TreeViewItem
+                {
+                    Header = "Interface: " + managementObject["InterfaceType"].ToString()
+                };
                 hddItemIdParent.Items.Add(childItemInterfaceType);
 
-                TreeViewItem childItemSerialNumber = new TreeViewItem();
-                childItemSerialNumber.Header = "Serial#: " + managementObject["SerialNumber"].ToString();
+                TreeViewItem childItemSerialNumber = new TreeViewItem
+                {
+                    Header = "Serial#: " + managementObject["SerialNumber"].ToString()
+                };
                 hddItemIdParent.Items.Add(childItemSerialNumber);
 
                 treeView_HDD.Items.Add(hddItemIdParent);
