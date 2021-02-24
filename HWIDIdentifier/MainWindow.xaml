@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HWIDIdentifier"
         mc:Ignorable="d"
-        Title="HWIDIdentifier" Height="450" Width="800">
+        Title="HWIDIdentifier" Height="450" Width="800" Icon="Technology.ico">
     <Grid>
         <Button x:Name="Button_Identify_HWID" Content="HWID" HorizontalAlignment="Left" Margin="22,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_HWID_Click"/>
         <Label x:Name="Label_Identify" Content="Identify" HorizontalAlignment="Left" Margin="22,43,0,0" VerticalAlignment="Top"/>
