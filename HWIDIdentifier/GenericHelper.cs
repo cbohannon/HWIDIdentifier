@@ -37,13 +37,35 @@ namespace HWIDIdentifier
                     return "Error - " + ex.Message;
                 }
             }
+            public string Write(string keyName, object value)
+            {
+                try
+                {
+                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regeditPath))
+                    {
+                        if (key != null)
+                        {
+                            // key.SetValue(keyName, value); /*Let's not set anything just yet because I'm not sure if it's safe or not*/
+                            return value.ToString();
+                        }
+                        else
+                        {
+                            return "Error - Subkey not found.";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return "Error - " + ex.Message;
+                }
+            }
         }
         public static class RandomGenerator
         {
             private static Random random1 = new Random();
-            public const string alphaNumeric1 = "ABCDEF0123456789";
+            public const string alphaNumeric1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             private static Random random2 = new Random();
-            public const string alphaNumeric2 = "abcdef0123456789";
+            public const string alphaNumeric2 = "abcdefghijklmnopqrstuvwxyz0123456789";
 
             public static string GenerateString(int size)
             {

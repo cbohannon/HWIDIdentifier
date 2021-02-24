@@ -56,8 +56,22 @@ namespace HWIDIdentifier
             DiskDriveHelper();
         }
 
+        private void Button_Spoof_HWID_Click(object sender, RoutedEventArgs e)
+        {
+            Label_Spoof_HWID.Content = WriteHelper.HWID.SpoofHWID();
+        }
+        private void Button_Spoof_PCGuid_Click(object sender, RoutedEventArgs e)
+        {
+            Label_Spoof_GUID.Content = WriteHelper.PCGuid.SpoofPCGuid();
+        }
+        private void Button_Spoof_PCName_Click(object sender, RoutedEventArgs e)
+        {
+            Label_Spoof_PCName.Content = WriteHelper.PCName.SpoofPCName();
+        }
         private void DiskDriveHelper()
         {
+            treeView_HDD.Items.Clear();
+
             // Manually added System.Management to References and using System.Management (maybe a bug in .Net)
             ManagementObjectSearcher managementObjectSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
 
