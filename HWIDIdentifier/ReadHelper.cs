@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("HWIDTest")]
 namespace HWIDIdentifier
 {
     class ReadHelper
