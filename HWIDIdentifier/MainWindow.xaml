@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HWIDIdentifier"
         mc:Ignorable="d"
-        Title="HWIDIdentifier" Height="450" Width="800" Icon="Technology.ico">
+        Title="HWIDIdentifier" Height="450" Width="773.818" Icon="Technology.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="Button_Identify_HWID" Content="HWID" HorizontalAlignment="Left" Margin="22,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_HWID_Click"/>
         <Label x:Name="Label_Identify" Content="Identify" HorizontalAlignment="Left" Margin="22,43,0,0" VerticalAlignment="Top"/>
@@ -17,7 +17,7 @@
         <Label x:Name="Label_PCName" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,141,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
         <Button x:Name="Button_Identify_ProductID" Content="ProductID" HorizontalAlignment="Left" Margin="22,180,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_ProductID_Click"/>
         <Label x:Name="label_ProductID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,175,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
-        <Button x:Name="Button_Exit" Content="E_xit" HorizontalAlignment="Left" Margin="707,389,0,0" VerticalAlignment="Top" Width="75" Click="Button_Exit_Click"/>
+        <Button x:Name="Button_Exit" Content="E_xit" HorizontalAlignment="Left" Margin="681,389,0,0" VerticalAlignment="Top" Width="75" Click="Button_Exit_Click"/>
         <Button x:Name="Button_Identify_HDD" Content="HDD(S)" HorizontalAlignment="Left" Margin="22,249,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_HDD_Click"/>
         <TreeView x:Name="treeView_HDD" HorizontalAlignment="Left" Height="100" Margin="102,209,0,0" VerticalAlignment="Top" Width="277"/>
         <Button x:Name="Button_Spoof_HWID" Content="Spoof HWID" HorizontalAlignment="Left" Margin="384,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Spoof_HWID_Click"/>
@@ -26,5 +26,9 @@
         <Label x:Name="Label_Spoof_GUID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="464,109,0,0" VerticalAlignment="Top" Height="28" Width="277"/>
         <Button x:Name="Button_Spoof_PCName" Content="Spoof Name" HorizontalAlignment="Left" Margin="384,146,0,0" VerticalAlignment="Top" Width="75" Click="Button_Spoof_PCName_Click"/>
         <Label x:Name="Label_Spoof_PCName" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="464,141,0,0" VerticalAlignment="Top" Width="277"/>
+        <Button x:Name="Button_Spoof_ProductID" Content="Spoof PID" HorizontalAlignment="Left" Margin="384,180,0,0" VerticalAlignment="Top" Width="75" Click="Button_Spoof_ProductID_Click"/>
+        <Label x:Name="Label_Spoof_ProductID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="464,177,0,0" VerticalAlignment="Top" Width="277"/>
+        <Label x:Name="Label_Spoof" Content="Spoof" HorizontalAlignment="Left" Margin="384,43,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Label_New_Value" Content="New Value" HorizontalAlignment="Left" Margin="464,43,0,0" VerticalAlignment="Top" Width="117"/>
     </Grid>
 </Window>

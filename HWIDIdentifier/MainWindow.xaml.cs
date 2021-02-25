@@ -68,6 +68,10 @@ namespace HWIDIdentifier
         {
             Label_Spoof_PCName.Content = WriteHelper.PCName.SpoofPCName();
         }
+        private void Button_Spoof_ProductID_Click(object sender, RoutedEventArgs e)
+        {
+            Label_Spoof_ProductID.Content = WriteHelper.ProductId.SpoofProductID();
+        }
         private void DiskDriveHelper()
         {
             treeView_HDD.Items.Clear();

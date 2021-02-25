@@ -47,5 +47,18 @@ namespace HWIDIdentifier
                 return SetValue("DESKTOP-" + GenericHelper.RandomGenerator.GenerateString(15));
             }
         }
+        public static class ProductId
+        {
+            public static GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion");
+            public static readonly string productKey = "ProductID";
+            public static string SetValue(object value)
+            {
+                return regeditObject.Write(productKey, value);
+            }
+            public static string SpoofProductID()
+            {
+                return SetValue(GenericHelper.RandomGenerator.GenerateString(5) + "-" + GenericHelper.RandomGenerator.GenerateString(5) + "-" + GenericHelper.RandomGenerator.GenerateString(5) + "-" + GenericHelper.RandomGenerator.GenerateString(5));
+            }
+        }
     }
 }
