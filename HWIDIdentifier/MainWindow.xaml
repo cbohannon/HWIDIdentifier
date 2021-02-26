@@ -30,5 +30,19 @@
         <Label x:Name="Label_Spoof_ProductID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="464,177,0,0" VerticalAlignment="Top" Width="277"/>
         <Label x:Name="Label_Spoof" Content="Spoof" HorizontalAlignment="Left" Margin="384,43,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Label_New_Value" Content="New Value" HorizontalAlignment="Left" Margin="464,43,0,0" VerticalAlignment="Top" Width="117"/>
+        <StackPanel VerticalAlignment="Top">
+            <Menu Width="Auto" Height="20">
+                <MenuItem Header="_File">
+                    <MenuItem x:Name="AppExit" Header="E_xit" HorizontalAlignment="Left" Width="140" Click="AppExit_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Tools">
+                    <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140"/>
+                    <MenuItem x:Name="Product_Info" Header="_Product Info" HorizontalAlignment="Left" Width="140"/>
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem x:Name="About" Header="_About" HorizontalAlignment="Left" Width="140"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
     </Grid>
 </Window>

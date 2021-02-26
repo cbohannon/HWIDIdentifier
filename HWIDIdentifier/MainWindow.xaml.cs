@@ -25,7 +25,10 @@ namespace HWIDIdentifier
         {
             InitializeComponent();
         }
-
+        private void AppExit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
         private void Button_Identify_HWID_Click(object sender, RoutedEventArgs e)
         {
             Label_HWID.Content = ReadHelper.HWID.GetValue();
