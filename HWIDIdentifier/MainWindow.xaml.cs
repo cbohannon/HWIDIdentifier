@@ -21,13 +21,16 @@ namespace HWIDIdentifier
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public MainWindow()
         {
+            log.Info("Application started at: " + DateTime.Now);
             InitializeComponent();
         }
+
         private void AppExit_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            ExitApp();
         }
         private void Button_Identify_HWID_Click(object sender, RoutedEventArgs e)
         {
@@ -51,7 +54,7 @@ namespace HWIDIdentifier
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            ExitApp();
         }
 
         private void Button_Identify_HDD_Click(object sender, RoutedEventArgs e)
@@ -63,18 +66,22 @@ namespace HWIDIdentifier
         {
             Label_Spoof_HWID.Content = WriteHelper.HWID.SpoofHWID();
         }
+
         private void Button_Spoof_PCGuid_Click(object sender, RoutedEventArgs e)
         {
             Label_Spoof_GUID.Content = WriteHelper.PCGuid.SpoofPCGuid();
         }
+
         private void Button_Spoof_PCName_Click(object sender, RoutedEventArgs e)
         {
             Label_Spoof_PCName.Content = WriteHelper.PCName.SpoofPCName();
         }
+
         private void Button_Spoof_ProductID_Click(object sender, RoutedEventArgs e)
         {
             Label_Spoof_ProductID.Content = WriteHelper.ProductId.SpoofProductID();
         }
+
         private void DiskDriveHelper()
         {
             treeView_HDD.Items.Clear();
@@ -109,6 +116,13 @@ namespace HWIDIdentifier
 
                 treeView_HDD.Items.Add(hddItemIdParent);
             }
+        }
+
+        private void ExitApp()
+        {
+            log.Info("Application exited at: " + DateTime.Now);
+
+            Environment.Exit(0);
         }
     }
 }
