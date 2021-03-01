@@ -27,7 +27,10 @@ namespace HWIDIdentifier
             log.Info("Application started at: " + DateTime.Now);
             InitializeComponent();
         }
-
+        private void Product_Info_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Windows Product Key: " + ReadHelper.GetWindowsProductKey(), "Product Keys");
+        }
         private void AppExit_Click(object sender, RoutedEventArgs e)
         {
             ExitApp();
@@ -36,52 +39,42 @@ namespace HWIDIdentifier
         {
             Label_HWID.Content = ReadHelper.HWID.GetValue();
         }
-
         private void Button_Identify_PCGuid_Click(object sender, RoutedEventArgs e)
         {
             Label_PCGuid.Content = ReadHelper.PCGuid.GetValue();
         }
-
         private void Button_Identify_PCName_Click(object sender, RoutedEventArgs e)
         {
             Label_PCName.Content = ReadHelper.PCName.GetValue();
         }
-
         private void Button_Identify_ProductID_Click(object sender, RoutedEventArgs e)
         {
             label_ProductID.Content = ReadHelper.ProductId.GetValue();
         }
-
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
             ExitApp();
         }
-
         private void Button_Identify_HDD_Click(object sender, RoutedEventArgs e)
         {
             DiskDriveHelper();
         }
-
         private void Button_Spoof_HWID_Click(object sender, RoutedEventArgs e)
         {
             Label_Spoof_HWID.Content = WriteHelper.HWID.SpoofHWID();
         }
-
         private void Button_Spoof_PCGuid_Click(object sender, RoutedEventArgs e)
         {
             Label_Spoof_GUID.Content = WriteHelper.PCGuid.SpoofPCGuid();
         }
-
         private void Button_Spoof_PCName_Click(object sender, RoutedEventArgs e)
         {
             Label_Spoof_PCName.Content = WriteHelper.PCName.SpoofPCName();
         }
-
         private void Button_Spoof_ProductID_Click(object sender, RoutedEventArgs e)
         {
             Label_Spoof_ProductID.Content = WriteHelper.ProductId.SpoofProductID();
         }
-
         private void DiskDriveHelper()
         {
             treeView_HDD.Items.Clear();
@@ -117,7 +110,6 @@ namespace HWIDIdentifier
                 treeView_HDD.Items.Add(hddItemIdParent);
             }
         }
-
         private void ExitApp()
         {
             log.Info("Application exited at: " + DateTime.Now);

@@ -48,7 +48,6 @@ namespace HWIDIdentifier
             public static readonly string productKey = "ProductID";
             public static string GetValue()
             {
-                // GetWindowsProductKey();
                 return regeditObject.Read(productKey);
             }
         }

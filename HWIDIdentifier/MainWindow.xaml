@@ -37,7 +37,7 @@
                 </MenuItem>
                 <MenuItem Header="_Tools">
                     <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140"/>
-                    <MenuItem x:Name="Product_Info" Header="_Product Info" HorizontalAlignment="Left" Width="140"/>
+                    <MenuItem x:Name="Product_Info" Header="_Keys" HorizontalAlignment="Left" Width="140" Click="Product_Info_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Help">
                     <MenuItem x:Name="About" Header="_About" HorizontalAlignment="Left" Width="140"/>
