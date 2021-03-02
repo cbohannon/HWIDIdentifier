@@ -29,7 +29,7 @@ namespace HWIDIdentifier
         }
         private void Product_Info_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Windows Product Key: " + ReadHelper.GetWindowsProductKey(), "Product Keys");
+            MessageBox.Show("Windows Product Key: " + ReadHelper.GetWindowsProductKey(), "Product Keys", MessageBoxButton.OK);
         }
         private void AppExit_Click(object sender, RoutedEventArgs e)
         {
