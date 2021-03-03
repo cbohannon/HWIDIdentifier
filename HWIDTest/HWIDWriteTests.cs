@@ -25,5 +25,22 @@ namespace HWIDTest
         {
             Assert.AreNotEqual(HWIDIdentifier.ReadHelper.HWID.GetValue(), HWIDIdentifier.WriteHelper.HWID.SpoofHWID());
         }
+        [TestMethod]
+        public void PCGuidNotNull()
+        {
+            Assert.IsNotNull(HWIDIdentifier.WriteHelper.PCGuid.SpoofPCGuid());
+        }
+        [TestMethod]
+        public void PCGuidWriteValidLength()
+        {
+            const sbyte pcGuidLength = 36;
+
+            Assert.AreEqual(pcGuidLength, HWIDIdentifier.WriteHelper.PCGuid.SpoofPCGuid().Length);
+        }
+        [TestMethod]
+        public void PCGuidWriteCompareOldNew()
+        {
+            Assert.AreNotEqual(HWIDIdentifier.ReadHelper.PCGuid.GetValue(), HWIDIdentifier.WriteHelper.PCGuid.SpoofPCGuid());
+        }
     }
 }
