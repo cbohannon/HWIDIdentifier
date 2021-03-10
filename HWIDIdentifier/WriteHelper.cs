@@ -46,7 +46,8 @@ namespace HWIDIdentifier
             }
             public static string SpoofPCName()
             {
-                return SetValue("DESKTOP-" + GenericHelper.RandomGenerator.GenerateString(15));
+                // Maximum length for the PCName is 15 characters
+                return SetValue("DESKTOP-" + GenericHelper.RandomGenerator.GenerateString(7));
             }
         }
         public static class ProductId

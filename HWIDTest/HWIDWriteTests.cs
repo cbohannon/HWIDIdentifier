@@ -47,5 +47,13 @@ namespace HWIDTest
         {
             Assert.IsNotNull(HWIDIdentifier.WriteHelper.PCName.SpoofPCName());
         }
+        [TestMethod]
+        public void PCNameWriteValidLength()
+        {
+            // 15 characters the the maximum length and recommended length
+            const sbyte pcNameLength = 15;
+
+            Assert.AreEqual(pcNameLength, HWIDIdentifier.WriteHelper.PCName.SpoofPCName().Length);
+        }
     }
 }
