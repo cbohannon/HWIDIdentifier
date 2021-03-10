@@ -42,5 +42,10 @@ namespace HWIDTest
         {
             Assert.AreNotEqual(HWIDIdentifier.ReadHelper.PCGuid.GetValue(), HWIDIdentifier.WriteHelper.PCGuid.SpoofPCGuid());
         }
+        [TestMethod]
+        public void PCNameWriteNotNull()
+        {
+            Assert.IsNotNull(HWIDIdentifier.WriteHelper.PCName.SpoofPCName());
+        }
     }
 }
