@@ -55,5 +55,10 @@ namespace HWIDTest
 
             Assert.AreEqual(pcNameLength, HWIDIdentifier.WriteHelper.PCName.SpoofPCName().Length);
         }
+        [TestMethod]
+        public void PCNameWriteCompareOldNew()
+        {
+            Assert.AreNotEqual(HWIDIdentifier.ReadHelper.PCName.GetValue(), HWIDIdentifier.WriteHelper.PCName.SpoofPCName());
+        }
     }
 }
