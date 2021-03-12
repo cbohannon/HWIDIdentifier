@@ -61,17 +61,22 @@ namespace HWIDTest
             Assert.AreNotEqual(HWIDIdentifier.ReadHelper.PCName.GetValue(), HWIDIdentifier.WriteHelper.PCName.SpoofPCName());
         }
         [TestMethod]
-        public void ProductIdNotNull()
+        public void ProductIdWriteNotNull()
         {
             Assert.IsNotNull(HWIDIdentifier.WriteHelper.ProductId.SpoofProductID());
         }
         [TestMethod]
-        public void ProductIdValidLength()
+        public void ProductIdWriteValidLength()
         {
             // The length is 20 plus three hyphens
             const sbyte idLength = 23;
 
             Assert.AreEqual(idLength, HWIDIdentifier.WriteHelper.ProductId.SpoofProductID().Length);
+        }
+        [TestMethod]
+        public void ProductIdWriteCompareOldNew()
+        {
+            Assert.AreNotEqual(HWIDIdentifier.ReadHelper.ProductId.GetValue(), HWIDIdentifier.WriteHelper.ProductId.SpoofProductID());
         }
     }
 }
