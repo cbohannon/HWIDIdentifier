@@ -51,6 +51,7 @@ namespace HWIDTest
         {
             // The length is 20 plus three hyphens
             const sbyte idLength = 23;
+         
             Assert.AreEqual(idLength, HWIDIdentifier.ReadHelper.ProductId.GetValue().Length);
         }
         [TestMethod]
@@ -58,6 +59,7 @@ namespace HWIDTest
         {
             // A valid Windows product key is 29 characters (hyphenated)
             const sbyte productKeyLength = 29;
+            
             Assert.AreEqual(productKeyLength, HWIDIdentifier.ReadHelper.GetWindowsProductKey().Length);
         }
     }

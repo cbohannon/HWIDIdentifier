@@ -65,5 +65,13 @@ namespace HWIDTest
         {
             Assert.IsNotNull(HWIDIdentifier.WriteHelper.ProductId.SpoofProductID());
         }
+        [TestMethod]
+        public void ProductIdValidLength()
+        {
+            // The length is 20 plus three hyphens
+            const sbyte idLength = 23;
+
+            Assert.AreEqual(idLength, HWIDIdentifier.WriteHelper.ProductId.SpoofProductID().Length);
+        }
     }
 }
