@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 using HWIDIdentifier;
 
 namespace HWIDTest
 {
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class HWIDWriteTests
     {
