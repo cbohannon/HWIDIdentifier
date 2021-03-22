@@ -77,13 +77,20 @@ namespace HWIDIdentifier
             }
             var keypart1 = key.Substring(1, last);
             const string insert = "N";
-            key = key.Substring(1).Replace(keypart1, keypart1 + insert);
-            if (last == 0)
-                key = insert + key;
+
+            if (keypart1.Length != 0) // There seems to be a difference in how keys are provided in a personal use and enterprise use
+            {
+                key = key.Substring(1).Replace(keypart1, keypart1 + insert);
+
+                if (last == 0)
+                    key = insert + key;
+            }
+
             for (var i = 5; i < key.Length; i += 6)
             {
                 key = key.Insert(i, "-");
             }
+
             return key;
         }
         public static string GetWindowsProductKey()

@@ -46,5 +46,21 @@ namespace HWIDTest
 
             Assert.IsNotNull(regeditObject.Write(profileKey, "{" + Guid.NewGuid().ToString() + "}"));
         }
+        [TestMethod]
+        public void WriteError()
+        {
+            GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SYSTEM\CurrentControlSet\Control\IDConfigDB\Hardware Profiles\000001");
+            string profileKey = "HwProfileGuid";
+
+            Assert.AreEqual(regeditObject.Write(profileKey, "Some bogus value."), "Error - Subkey not found.");
+        }
+        [TestMethod]
+        public void WriteErrorException()
+        {
+            GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SYSTEM\CurrentControlSet\Control\IDConfigDB\Hardware Profiles\0001");
+            string profileKey = "XHwProfileGuidX";
+
+            Assert.IsTrue(regeditObject.Write(profileKey, "Some bogus value.").Contains("Error - "));
+        }
     }
 }

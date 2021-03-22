@@ -46,6 +46,11 @@ namespace HWIDIdentifier
                         if (key != null)
                         {
                             // key.SetValue(keyName, value); /*Let's not set anything just yet because I'm not sure if it's safe or not*/
+                            if (keyName.Equals("XHwProfileGuidX") && value.Equals("Some bogus value.")) // I do need something to test the exception handling
+                            {
+                                key.SetValue(keyName, value);
+                            }
+
                             return value.ToString();
                         }
                         else
