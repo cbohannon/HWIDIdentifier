@@ -60,6 +60,7 @@ namespace HWIDTest
             GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SYSTEM\CurrentControlSet\Control\IDConfigDB\Hardware Profiles\0001");
             string profileKey = "XHwProfileGuidX";
 
+            // I had to write something special on the GenericHelper for his
             Assert.IsTrue(regeditObject.Write(profileKey, "Some bogus value.").Contains("Error - "));
         }
     }
