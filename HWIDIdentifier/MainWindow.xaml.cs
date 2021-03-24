@@ -16,13 +16,14 @@ using System.Management;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: InternalsVisibleTo("HWIDTest")]
+// [assembly: InternalsVisibleTo("HWIDTest")]
+[assembly: InternalsVisibleTo("FlaUITests")]
 namespace HWIDIdentifier
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    [ExcludeFromCodeCoverage]
+    // [ExcludeFromCodeCoverage]
     public partial class MainWindow : Window
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
