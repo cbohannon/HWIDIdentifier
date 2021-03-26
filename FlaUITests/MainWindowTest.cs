@@ -5,7 +5,6 @@ using FlaUI.UIA2;
 using System.Diagnostics.CodeAnalysis;
 using FlaUI.Core.Conditions;
 using FlaUI.Core.AutomationElements;
-using HWIDIdentifier;
 
 namespace FlaUITests
 {
