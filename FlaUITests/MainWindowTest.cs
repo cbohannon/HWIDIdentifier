@@ -34,6 +34,13 @@ namespace FlaUITests
 
             Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_HWID")).AsLabel().Name);
         }
+        [TestMethod]
+        public void PCGuidButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("PCGuid")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_PCGuid")).AsLabel().Name);
+        }
         [TestCleanup]
         public void TestCleanup()
         {
