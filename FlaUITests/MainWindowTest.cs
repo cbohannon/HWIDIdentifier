@@ -28,8 +28,7 @@ namespace FlaUITests
         }
         [TestMethod]
         public void HWIDButtonClick()
-        {
-            // mainWindow.FindFirstDescendant(conditionFactory.ByName("Exit")).AsButton().Click();
+        {            
             mainWindow.FindFirstDescendant(conditionFactory.ByName("HWID")).AsButton().Click();
 
             Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_HWID")).AsLabel().Name);
@@ -40,6 +39,13 @@ namespace FlaUITests
             mainWindow.FindFirstDescendant(conditionFactory.ByName("PCGuid")).AsButton().Click();
 
             Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_PCGuid")).AsLabel().Name);
+        }
+        [TestMethod]
+        public void ExitButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("Exit")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow);
         }
         [TestCleanup]
         public void TestCleanup()
