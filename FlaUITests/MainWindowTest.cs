@@ -52,7 +52,10 @@ namespace FlaUITests
         {
             application.Dispose();
             automation.Dispose();
-            mainWindow.Close();
+            if (mainWindow.IsAvailable)
+            {
+                mainWindow.Close();
+            }
             conditionFactory = null;
         }
     }
