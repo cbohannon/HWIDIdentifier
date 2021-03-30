@@ -54,6 +54,13 @@ namespace FlaUITests
             Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("label_ProductID")).AsLabel().Name);
         }
         [TestMethod]
+        public void HardDiskDriveButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("HDD(S)")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("treeView_HDD")).AsTree().Name);
+        }
+        [TestMethod]
         public void ExitButtonClick()
         {
             mainWindow.FindFirstDescendant(conditionFactory.ByName("Exit")).AsButton().Click();
