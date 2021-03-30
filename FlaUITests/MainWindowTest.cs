@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FlaUI.Core;
 using FlaUI.UIA3;
-using FlaUI.UIA2;
 using System.Diagnostics.CodeAnalysis;
 using FlaUI.Core.Conditions;
 using FlaUI.Core.AutomationElements;
@@ -39,6 +38,20 @@ namespace FlaUITests
             mainWindow.FindFirstDescendant(conditionFactory.ByName("PCGuid")).AsButton().Click();
 
             Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_PCGuid")).AsLabel().Name);
+        }
+        [TestMethod]
+        public void PCNameButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("PCName")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_PCName")).AsLabel().Name);
+        }
+        [TestMethod]
+        public void ProductIdButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("ProductID")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("label_ProductID")).AsLabel().Name);
         }
         [TestMethod]
         public void ExitButtonClick()
