@@ -61,6 +61,34 @@ namespace FlaUITests
             Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("treeView_HDD")).AsTree().Name);
         }
         [TestMethod]
+        public void SpoofHWIDButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("Spoof HWID")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_Spoof_HWID")).AsLabel().Name);
+        }
+        [TestMethod]
+        public void SpoofGUIDButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("Spoof GUID")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_Spoof_GUID")).AsLabel().Name);
+        }
+        [TestMethod]
+        public void SpoofNameButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("Spoof Name")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_Spoof_PCName")).AsLabel().Name);
+        }
+        [TestMethod]
+        public void SpoofPIDButtonClick()
+        {
+            mainWindow.FindFirstDescendant(conditionFactory.ByName("Spoof PID")).AsButton().Click();
+
+            Assert.IsNotNull(mainWindow.FindFirstDescendant(conditionFactory.ByAutomationId("Label_Spoof_ProductID")).AsLabel().Name);
+        }
+        [TestMethod]
         public void ExitButtonClick()
         {
             mainWindow.FindFirstDescendant(conditionFactory.ByName("Exit")).AsButton().Click();
