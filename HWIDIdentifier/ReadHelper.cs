@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management;
 using System.Runtime.CompilerServices;
 using Microsoft.Win32;
 
@@ -54,28 +49,28 @@ namespace HWIDIdentifier
         public static string DecodeProductKeyWin8AndUp(byte[] digitalProductId)
         {
             // https://stackoverflow.com/questions/10926634/how-can-i-get-windows-product-key-in-c
-            var key = String.Empty;
+            string key = null;
             const int keyOffset = 52;
-            var isWin8 = (byte)((digitalProductId[66] / 6) & 1);
+            byte isWin8 = (byte)((digitalProductId[66] / 6) & 1);
             digitalProductId[66] = (byte)((digitalProductId[66] & 0xf7) | (isWin8 & 2) * 4);
 
             // Possible alpha-numeric characters in product key.
             const string digits = "BCDFGHJKMPQRTVWXY2346789";
             int last = 0;
-            for (var i = 24; i >= 0; i--)
+            for (int i = 24; i >= 0; i--)
             {
-                var current = 0;
-                for (var j = 14; j >= 0; j--)
+                int current = 0;
+                for (int j = 14; j >= 0; j--)
                 {
-                    current = current * 256;
+                    current *= 256;
                     current = digitalProductId[j + keyOffset] + current;
                     digitalProductId[j + keyOffset] = (byte)(current / 24);
-                    current = current % 24;
+                    current %= 24;
                     last = current;
                 }
                 key = digits[current] + key;
             }
-            var keypart1 = key.Substring(1, last);
+            string keypart1 = key.Substring(1, last);
             const string insert = "N";
 
             if (keypart1.Length != 0) // There seems to be a difference in how keys are provided in a personal use and enterprise use
@@ -83,10 +78,12 @@ namespace HWIDIdentifier
                 key = key.Substring(1).Replace(keypart1, keypart1 + insert);
 
                 if (last == 0)
+                {
                     key = insert + key;
+                }
             }
 
-            for (var i = 5; i < key.Length; i += 6)
+            for (int i = 5; i < key.Length; i += 6)
             {
                 key = key.Insert(i, "-");
             }
@@ -96,13 +93,16 @@ namespace HWIDIdentifier
         public static string GetWindowsProductKey()
         {
             // https://stackoverflow.com/questions/10926634/how-can-i-get-windows-product-key-in-c
-            var key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default); 
+            RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
             const string keyPath = @"Software\Microsoft\Windows NT\CurrentVersion";
-            var digitalProductId = (byte[])key.OpenSubKey(keyPath).GetValue("DigitalProductId");
+            byte[] digitalProductId = (byte[])key.OpenSubKey(keyPath).GetValue("DigitalProductId");
 
-            var isWin8OrUp = (Environment.OSVersion.Version.Major == 6 && System.Environment.OSVersion.Version.Minor >= 2) || (Environment.OSVersion.Version.Major > 6);
-
-            var productKey = isWin8OrUp ? DecodeProductKeyWin8AndUp(digitalProductId) : DecodeProductKeyWin8AndUp(digitalProductId);
+            string productKey = null;
+            if ((Environment.OSVersion.Version.Major == 6 && System.Environment.OSVersion.Version.Minor >= 2) || (Environment.OSVersion.Version.Major > 6))
+            {
+                productKey = DecodeProductKeyWin8AndUp(digitalProductId);
+            }           
+            
             return productKey;
         }
     }
