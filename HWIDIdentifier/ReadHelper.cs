@@ -98,11 +98,18 @@ namespace HWIDIdentifier
             byte[] digitalProductId = (byte[])key.OpenSubKey(keyPath).GetValue("DigitalProductId");
 
             string productKey = null;
-            if ((Environment.OSVersion.Version.Major == 6 && System.Environment.OSVersion.Version.Minor >= 2) || (Environment.OSVersion.Version.Major > 6))
+            switch (Environment.OSVersion.Version.Major)
             {
-                productKey = DecodeProductKeyWin8AndUp(digitalProductId);
-            }           
-            
+                case 6: // I don't have anyway to test on anything other than Windows 10
+                    productKey = DecodeProductKeyWin8AndUp(digitalProductId);
+                    break;
+                case 10: // I don't have anyway to test on anything other than Windows 10
+                    productKey = DecodeProductKeyWin8AndUp(digitalProductId);
+                    break;
+                default:
+                    break;
+            }
+
             return productKey;
         }
     }
