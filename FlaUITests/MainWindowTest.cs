@@ -95,6 +95,14 @@ namespace FlaUITests
 
             Assert.IsNotNull(mainWindow);
         }
+        [TestMethod]
+        public void AppExitClick()
+        {
+            MenuItem menu = mainWindow.FindFirstDescendant(conditionFactory.ByName("File")).AsMenuItem();
+            menu.Items["Exit"].Invoke();
+
+            Assert.IsNotNull(mainWindow);
+        }
         [TestCleanup]
         public void TestCleanup()
         {
