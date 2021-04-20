@@ -97,10 +97,13 @@ namespace FlaUITests
             menuItem.Items["Keys"].Invoke();
 
             Window messageBox = mainWindow.ModalWindows.FirstOrDefault().AsWindow();
-            var yesButton = messageBox.FindFirstChild(conditionFactory.ByName("OK")).AsButton();
             Thread.Sleep(1000);
-            yesButton.Click(); // Invoke seems to not work
 
+            Button okButton = messageBox.FindFirstChild(conditionFactory.ByName("OK")).AsButton();
+            Thread.Sleep(1000);
+            okButton.Click(); // Invoke seems to not work
+
+            Thread.Sleep(1000);
             Assert.IsNotNull(mainWindow);
         }
         [TestMethod]
@@ -114,8 +117,11 @@ namespace FlaUITests
         public void AppExitClick()
         {
             MenuItem menuItem = mainWindow.FindFirstDescendant(conditionFactory.ByName("File")).AsMenuItem();
+            Thread.Sleep(1000);
+
             menuItem.Items["Exit"].Invoke();
 
+            Thread.Sleep(1000);
             Assert.IsNotNull(mainWindow);
         }
         [TestCleanup]
