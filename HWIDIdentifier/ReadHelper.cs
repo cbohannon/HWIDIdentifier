@@ -19,7 +19,7 @@ namespace HWIDIdentifier
         }
         public static class PCGuid
         {
-            // Note that in the HWIDIdentifier project poperties, I had to uncheck Prefer 32-bit for this method call to work properly
+            // Note that in the HWIDIdentifier project properties, I had to uncheck Prefer 32-bit for this method call to work properly
             public static GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SOFTWARE\Microsoft\Cryptography");
             public static readonly string machineKey = "MachineGuid";
 
@@ -39,7 +39,7 @@ namespace HWIDIdentifier
         }
         public static class ProductId
         {
-            public static GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion");
+            public static GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
             public static readonly string productKey = "ProductID";
             public static string GetValue()
             {

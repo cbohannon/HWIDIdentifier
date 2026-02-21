@@ -17,7 +17,7 @@
         <Label x:Name="Label_PCName" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,141,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
         <Button x:Name="Button_Identify_ProductID" Content="ProductID" HorizontalAlignment="Left" Margin="22,180,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_ProductID_Click"/>
         <Label x:Name="label_ProductID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,175,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
-        <Button x:Name="Button_Exit" Content="E_xit" HorizontalAlignment="Left" Margin="677,383,0,0" VerticalAlignment="Top" Width="75" Click="Button_Exit_Click"/>
+        <Button x:Name="Button_Exit" Content="E_xit" HorizontalAlignment="Left" Margin="666,383,0,0" VerticalAlignment="Top" Width="75" Click="Button_Exit_Click"/>
         <Button x:Name="Button_Identify_HDD" Content="HDD(S)" HorizontalAlignment="Left" Margin="22,249,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_HDD_Click"/>
         <TreeView x:Name="treeView_HDD" HorizontalAlignment="Left" Height="100" Margin="102,209,0,0" VerticalAlignment="Top" Width="277"/>
         <Button x:Name="Button_Spoof_HWID" Content="Spoof HWID" HorizontalAlignment="Left" Margin="384,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Spoof_HWID_Click"/>
@@ -36,11 +36,11 @@
                     <MenuItem x:Name="AppExit" Header="E_xit" HorizontalAlignment="Left" Width="140" Click="AppExit_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Tools">
-                    <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140"/>
+                    <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140" IsEnabled="False"/>
                     <MenuItem x:Name="Product_Info" Header="_Keys" HorizontalAlignment="Left" Width="140" Click="Product_Info_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Help">
-                    <MenuItem x:Name="About" Header="_About" HorizontalAlignment="Left" Width="140"/>
+                    <MenuItem x:Name="About" Header="_About" HorizontalAlignment="Left" Width="140" IsEnabled="False"/>
                 </MenuItem>
             </Menu>
         </StackPanel>

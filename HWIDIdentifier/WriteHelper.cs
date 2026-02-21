@@ -52,7 +52,7 @@ namespace HWIDIdentifier
         }
         public static class ProductId
         {
-            public static GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion");
+            public static GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
             public static readonly string productKey = "ProductID";
             public static string SetValue(object value)
             {
