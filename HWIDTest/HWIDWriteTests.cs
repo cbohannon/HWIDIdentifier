@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 using HWIDIdentifier;
 using Microsoft.Win32;
 
@@ -59,6 +60,13 @@ namespace HWIDTest
             Assert.AreEqual(guidLength, HWIDIdentifier.WriteHelper.HWID.SpoofHWID().Length);
         }
         [TestMethod]
+        public void HWIDWriteValidFormat()
+        {
+            string value = HWIDIdentifier.WriteHelper.HWID.SpoofHWID();
+
+            Assert.IsTrue(Regex.IsMatch(value, @"^\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}$"));
+        }
+        [TestMethod]
         public void HWIDWriteCompareOldNew()
         {
             Assert.AreNotEqual(HWIDIdentifier.ReadHelper.HWID.GetValue(), HWIDIdentifier.WriteHelper.HWID.SpoofHWID());
@@ -74,6 +82,13 @@ namespace HWIDTest
             const sbyte pcGuidLength = 36;
 
             Assert.AreEqual(pcGuidLength, HWIDIdentifier.WriteHelper.PCGuid.SpoofPCGuid().Length);
+        }
+        [TestMethod]
+        public void PCGuidWriteValidFormat()
+        {
+            string value = HWIDIdentifier.WriteHelper.PCGuid.SpoofPCGuid();
+
+            Assert.IsTrue(Regex.IsMatch(value, @"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"));
         }
         [TestMethod]
         public void PCGuidWriteCompareOldNew()
@@ -94,6 +109,11 @@ namespace HWIDTest
             Assert.AreEqual(pcNameLength, HWIDIdentifier.WriteHelper.PCName.SpoofPCName().Length);
         }
         [TestMethod]
+        public void PCNameWriteValidFormat()
+        {
+            Assert.IsTrue(HWIDIdentifier.WriteHelper.PCName.SpoofPCName().StartsWith("DESKTOP-"));
+        }
+        [TestMethod]
         public void PCNameWriteCompareOldNew()
         {
             Assert.AreNotEqual(HWIDIdentifier.ReadHelper.PCName.GetValue(), HWIDIdentifier.WriteHelper.PCName.SpoofPCName());
@@ -110,6 +130,13 @@ namespace HWIDTest
             const sbyte idLength = 23;
 
             Assert.AreEqual(idLength, HWIDIdentifier.WriteHelper.ProductId.SpoofProductID().Length);
+        }
+        [TestMethod]
+        public void ProductIdWriteValidFormat()
+        {
+            string value = HWIDIdentifier.WriteHelper.ProductId.SpoofProductID();
+
+            Assert.IsTrue(Regex.IsMatch(value, @"^[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}$"));
         }
         [TestMethod]
         public void ProductIdWriteCompareOldNew()

@@ -67,8 +67,6 @@ namespace HWIDIdentifier
         {
             private static Random random1 = new Random();
             public const string alphaNumeric1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // BCDFGHJKMPQRTVWXY2346789
-            private static Random random2 = new Random();
-            public const string alphaNumeric2 = "abcdefghijklmnopqrstuvwxyz0123456789"; // bcdfghjkmpqrtvwxy2346789
 
             public static string GenerateString(int size)
             {

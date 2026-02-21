@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 using HWIDIdentifier;
 
 namespace HWIDTest
@@ -23,6 +24,13 @@ namespace HWIDTest
             Assert.AreEqual(guidLength, HWIDIdentifier.ReadHelper.HWID.GetValue().Length);
         }
         [TestMethod]
+        public void HWIDReadValidFormat()
+        {
+            string value = HWIDIdentifier.ReadHelper.HWID.GetValue();
+
+            Assert.IsTrue(Regex.IsMatch(value, @"^\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}$"));
+        }
+        [TestMethod]
         public void PCGuidReadNotNull()
         {
             // Same as above, let's just ensure the return is not null
@@ -35,6 +43,13 @@ namespace HWIDTest
             const sbyte guidLength = 36;
 
             Assert.AreEqual(guidLength, HWIDIdentifier.ReadHelper.PCGuid.GetValue().Length);
+        }
+        [TestMethod]
+        public void PCGuidReadValidFormat()
+        {
+            string value = HWIDIdentifier.ReadHelper.PCGuid.GetValue();
+
+            Assert.IsTrue(Regex.IsMatch(value, @"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"));
         }
         [TestMethod]
         public void PCNameNotNull()
@@ -53,16 +68,25 @@ namespace HWIDTest
         {
             // The length is 20 plus three hyphens
             const sbyte idLength = 23;
-         
+
             Assert.AreEqual(idLength, HWIDIdentifier.ReadHelper.ProductId.GetValue().Length);
+        }
+        [TestMethod]
+        public void ProductIdValidFormat()
+        {
+            string value = HWIDIdentifier.ReadHelper.ProductId.GetValue();
+
+            Assert.IsTrue(Regex.IsMatch(value, @"^\w{5}-\w{5}-\w{5}-\w{5}$"));
         }
         [TestMethod]
         public void WindowsProductKeyValidLength()
         {
             // A valid Windows product key is 29 characters (hyphenated)
             const sbyte productKeyLength = 29;
-            
-            Assert.AreEqual(productKeyLength, HWIDIdentifier.ReadHelper.GetWindowsProductKey().Length);
+            string productKey = HWIDIdentifier.ReadHelper.GetWindowsProductKey();
+
+            Assert.IsNotNull(productKey);
+            Assert.AreEqual(productKeyLength, productKey.Length);
         }
     }
 }
