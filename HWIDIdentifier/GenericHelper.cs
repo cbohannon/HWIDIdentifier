@@ -8,19 +8,25 @@ namespace HWIDIdentifier
         public class Regedit
         {
             private string regeditPath = string.Empty;
-            public Regedit(string regeditPath)
+            private RegistryHive registryHive;
+            public Regedit(string regeditPath, RegistryHive hive = RegistryHive.LocalMachine)
             {
                 this.regeditPath = regeditPath;
+                this.registryHive = hive;
             }
             public string Read(string keyName)
             {
                 try
                 {
-                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regeditPath))
+                    using (RegistryKey baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Default))
+                    using (RegistryKey key = baseKey.OpenSubKey(regeditPath))
                     {
                         if (key != null)
                         {
-                            return key.GetValue(keyName).ToString();
+                            object value = key.GetValue(keyName);
+                            if (value == null)
+                                return "Error - Value not found.";
+                            return value.ToString();
                         }
                         else
                         {
@@ -37,16 +43,12 @@ namespace HWIDIdentifier
             {
                 try
                 {
-                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regeditPath))
+                    using (RegistryKey baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Default))
+                    using (RegistryKey key = baseKey.OpenSubKey(regeditPath, true))
                     {
                         if (key != null)
                         {
-                            // key.SetValue(keyName, value); /*Let's not set anything just yet because I'm not sure if it's safe or not*/
-                            if (keyName.Equals("XHwProfileGuidX") && value.Equals("Some bogus value.")) // I do need something to test the exception handling
-                            {
-                                key.SetValue(keyName, value);
-                            }
-
+                            key.SetValue(keyName, value);
                             return value.ToString();
                         }
                         else
