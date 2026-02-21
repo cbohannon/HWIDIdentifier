@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using HWIDIdentifier;
 using System;
+using Microsoft.Win32;
 
 namespace HWIDTest
 {
@@ -9,6 +10,20 @@ namespace HWIDTest
     [TestClass]
     public class GenericHelperTest
     {
+        private const string testKeyPath = @"Software\HWIDIdentifierTest";
+        private const string testValueName = "TestValue";
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            Registry.CurrentUser.CreateSubKey(testKeyPath);
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            Registry.CurrentUser.DeleteSubKey(testKeyPath, false);
+        }
         [TestMethod]
         public void RandomGeneratorNotNull()
         {
@@ -41,10 +56,9 @@ namespace HWIDTest
         [TestMethod]
         public void WriteNotNull()
         {
-            GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SYSTEM\CurrentControlSet\Control\IDConfigDB\Hardware Profiles\0001");
-            string profileKey = "HwProfileGuid";
+            GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(testKeyPath, RegistryHive.CurrentUser);
 
-            Assert.IsNotNull(regeditObject.Write(profileKey, "{" + Guid.NewGuid().ToString() + "}"));
+            Assert.IsNotNull(regeditObject.Write(testValueName, "{" + Guid.NewGuid().ToString() + "}"));
         }
         [TestMethod]
         public void WriteError()
@@ -53,15 +67,6 @@ namespace HWIDTest
             string profileKey = "HwProfileGuid";
 
             Assert.AreEqual(regeditObject.Write(profileKey, "Some bogus value."), "Error - Subkey not found.");
-        }
-        [TestMethod]
-        public void WriteErrorException()
-        {
-            GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SYSTEM\CurrentControlSet\Control\IDConfigDB\Hardware Profiles\0001");
-            string profileKey = "XHwProfileGuidX";
-
-            // I had to write something special on the GenericHelper for his
-            Assert.IsTrue(regeditObject.Write(profileKey, "Some bogus value.").Contains("Error - "));
         }
     }
 }

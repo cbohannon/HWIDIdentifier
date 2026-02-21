@@ -70,35 +70,47 @@ namespace HWIDIdentifier
         {
             treeView_HDD.Items.Clear();
 
-            // Manually added System.Management to References and using System.Management (maybe a bug in .Net)
-            ManagementObjectSearcher managementObjectSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
-
-            foreach (ManagementObject managementObject in managementObjectSearcher.Get())
+            try
             {
-                TreeViewItem hddItemIdParent = new TreeViewItem
+                // Manually added System.Management to References and using System.Management (maybe a bug in .Net)
+                using (ManagementObjectSearcher managementObjectSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive"))
+                using (ManagementObjectCollection collection = managementObjectSearcher.Get())
                 {
-                    Header = managementObject["DeviceID"].ToString()
-                };
+                    foreach (ManagementObject managementObject in collection)
+                    {
+                        using (managementObject)
+                        {
+                            TreeViewItem hddItemIdParent = new TreeViewItem
+                            {
+                                Header = managementObject["DeviceID"].ToString()
+                            };
 
-                TreeViewItem childItemModel = new TreeViewItem
-                {
-                    Header = "Model: " + managementObject["Model"].ToString()
-                };
-                hddItemIdParent.Items.Add(childItemModel);
+                            TreeViewItem childItemModel = new TreeViewItem
+                            {
+                                Header = "Model: " + managementObject["Model"].ToString()
+                            };
+                            hddItemIdParent.Items.Add(childItemModel);
 
-                TreeViewItem childItemInterfaceType = new TreeViewItem
-                {
-                    Header = "Interface: " + managementObject["InterfaceType"].ToString()
-                };
-                hddItemIdParent.Items.Add(childItemInterfaceType);
+                            TreeViewItem childItemInterfaceType = new TreeViewItem
+                            {
+                                Header = "Interface: " + managementObject["InterfaceType"].ToString()
+                            };
+                            hddItemIdParent.Items.Add(childItemInterfaceType);
 
-                TreeViewItem childItemSerialNumber = new TreeViewItem
-                {
-                    Header = "Serial#: " + managementObject["SerialNumber"].ToString()
-                };
-                hddItemIdParent.Items.Add(childItemSerialNumber);
+                            TreeViewItem childItemSerialNumber = new TreeViewItem
+                            {
+                                Header = "Serial#: " + managementObject["SerialNumber"].ToString()
+                            };
+                            hddItemIdParent.Items.Add(childItemSerialNumber);
 
-                treeView_HDD.Items.Add(hddItemIdParent);
+                            treeView_HDD.Items.Add(hddItemIdParent);
+                        }
+                    }
+                }
+            }
+            catch (ManagementException ex)
+            {
+                MessageBox.Show("Error enumerating disk drives: " + ex.Message, "HDD Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void ExitApp()

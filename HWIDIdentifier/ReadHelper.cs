@@ -93,24 +93,32 @@ namespace HWIDIdentifier
         public static string GetWindowsProductKey()
         {
             // https://stackoverflow.com/questions/10926634/how-can-i-get-windows-product-key-in-c
-            RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
             const string keyPath = @"Software\Microsoft\Windows NT\CurrentVersion";
-            byte[] digitalProductId = (byte[])key.OpenSubKey(keyPath).GetValue("DigitalProductId");
-
-            string productKey = null;
-            switch (Environment.OSVersion.Version.Major)
+            using (RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default))
+            using (RegistryKey subKey = key.OpenSubKey(keyPath))
             {
-                case 6: // I don't have anyway to test on anything other than Windows 10
-                    productKey = DecodeProductKeyWin8AndUp(digitalProductId);
-                    break;
-                case 10: // I don't have anyway to test on anything other than Windows 10
-                    productKey = DecodeProductKeyWin8AndUp(digitalProductId);
-                    break;
-                default:
-                    break;
-            }
+                if (subKey == null)
+                    return "Error - Subkey not found.";
 
-            return productKey;
+                byte[] digitalProductId = (byte[])subKey.GetValue("DigitalProductId");
+                if (digitalProductId == null)
+                    return "Error - Value not found.";
+
+                string productKey = null;
+                switch (Environment.OSVersion.Version.Major)
+                {
+                    case 6: // I don't have anyway to test on anything other than Windows 10
+                        productKey = DecodeProductKeyWin8AndUp(digitalProductId);
+                        break;
+                    case 10: // I don't have anyway to test on anything other than Windows 10
+                        productKey = DecodeProductKeyWin8AndUp(digitalProductId);
+                        break;
+                    default:
+                        break;
+                }
+
+                return productKey;
+            }
         }
     }
 }
