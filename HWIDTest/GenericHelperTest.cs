@@ -30,6 +30,21 @@ namespace HWIDTest
             Assert.IsNotNull(GenericHelper.RandomGenerator.GenerateString(15));
         }
         [TestMethod]
+        public void RandomGeneratorCorrectLength()
+        {
+            const int size = 15;
+            Assert.AreEqual(size, GenericHelper.RandomGenerator.GenerateString(size).Length);
+        }
+        [TestMethod]
+        public void RandomGeneratorValidCharacters()
+        {
+            string result = GenericHelper.RandomGenerator.GenerateString(100);
+            foreach (char c in result)
+            {
+                Assert.IsTrue(GenericHelper.RandomGenerator.alphaNumeric1.Contains(c));
+            }
+        }
+        [TestMethod]
         public void ReadNotNull()
         {
             GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(@"SYSTEM\CurrentControlSet\Control\IDConfigDB\Hardware Profiles\0001");
@@ -59,6 +74,16 @@ namespace HWIDTest
             GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(testKeyPath, RegistryHive.CurrentUser);
 
             Assert.IsNotNull(regeditObject.Write(testValueName, "{" + Guid.NewGuid().ToString() + "}"));
+        }
+        [TestMethod]
+        public void WriteReadBack()
+        {
+            GenericHelper.Regedit regeditObject = new GenericHelper.Regedit(testKeyPath, RegistryHive.CurrentUser);
+            string testValue = "{" + Guid.NewGuid().ToString() + "}";
+
+            regeditObject.Write(testValueName, testValue);
+
+            Assert.AreEqual(testValue, regeditObject.Read(testValueName));
         }
         [TestMethod]
         public void WriteError()
