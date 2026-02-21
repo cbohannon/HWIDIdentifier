@@ -15,7 +15,7 @@ namespace HWIDIdentifier
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public MainWindow()
         {
-            log.Info("Application started at: " + DateTime.Now);
+            log.InfoFormat("Application started at: {0}", DateTime.Now);
             InitializeComponent();
         }
         private void Product_Info_Click(object sender, RoutedEventArgs e)
@@ -115,7 +115,7 @@ namespace HWIDIdentifier
         }
         private void ExitApp()
         {
-            log.Info("Application exited at: " + DateTime.Now);
+            log.InfoFormat("Application exited at: {0}", DateTime.Now);
 
             Application.Current.Shutdown();
         }
