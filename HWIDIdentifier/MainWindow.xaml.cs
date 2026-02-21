@@ -117,7 +117,13 @@ namespace HWIDIdentifier
         {
             log.Info("Application exited at: " + DateTime.Now);
 
-            Environment.Exit(0);
+            Application.Current.Shutdown();
+        }
+
+        private void Button_Spoof_HDD_Click(object sender, RoutedEventArgs e)
+        {
+            treeView_Spoof_HDD.Items.Clear();
+            treeView_Spoof_HDD.Items.Add(new TreeViewItem { Header = "Not Implemented" });
         }
     }
 }

@@ -4,8 +4,11 @@ using FlaUI.UIA3;
 using System.Diagnostics.CodeAnalysis;
 using FlaUI.Core.Conditions;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
+using System.IO;
 using System.Linq;
-using System.Threading;
+using System.Reflection;
+using System;
 
 namespace FlaUITests
 {
@@ -13,6 +16,12 @@ namespace FlaUITests
     [TestClass]
     public class MainWindowTest
     {
+        private static readonly string appPath = Path.GetFullPath(
+            Path.Combine(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                @"..\..\..\..\HWIDIdentifier\bin\Debug\HWIDIdentifier.exe"
+            ));
+
         Application application;
         UIA3Automation automation;
         Window mainWindow;
@@ -21,8 +30,7 @@ namespace FlaUITests
         [TestInitialize]
         public void TestInitialize()
         {
-            // string relPath = Path.GetRelativePath("C:\\Source\\GitHub", "C:\\Source\\GitHub\\HWIDIdentifier\\HWIDIdentifier\\bin\\Debug\\HWIDIdentifier.exe");
-            application = Application.Launch(@"C:\Source\GitHub\HWIDIdentifier\HWIDIdentifier\bin\Debug\HWIDIdentifier.exe", "/quickStart");
+            application = Application.Launch(appPath, "/quickStart");
             automation = new UIA3Automation();
             mainWindow = application.GetMainWindow(automation);
             conditionFactory = new ConditionFactory(new UIA3PropertyLibrary());
@@ -96,14 +104,14 @@ namespace FlaUITests
             MenuItem menuItem = mainWindow.FindFirstDescendant(conditionFactory.ByName("Tools")).AsMenuItem();
             menuItem.Items["Keys"].Invoke();
 
-            Window messageBox = mainWindow.ModalWindows.FirstOrDefault().AsWindow();
-            Thread.Sleep(1000);
+            Window messageBox = Retry.WhileNull(
+                () => mainWindow.ModalWindows.FirstOrDefault(),
+                TimeSpan.FromSeconds(5)).Result;
 
             Button okButton = messageBox.FindFirstChild(conditionFactory.ByName("OK")).AsButton();
-            Thread.Sleep(1000);
+            okButton.WaitUntilEnabled();
             okButton.Click(); // Invoke seems to not work
 
-            Thread.Sleep(1000);
             Assert.IsNotNull(mainWindow);
         }
         [TestMethod]
@@ -117,11 +125,8 @@ namespace FlaUITests
         public void AppExitClick()
         {
             MenuItem menuItem = mainWindow.FindFirstDescendant(conditionFactory.ByName("File")).AsMenuItem();
-            Thread.Sleep(1000);
-
             menuItem.Items["Exit"].Invoke();
 
-            Thread.Sleep(1000);
             Assert.IsNotNull(mainWindow);
         }
         [TestCleanup]
@@ -129,9 +134,14 @@ namespace FlaUITests
         {
             application.Dispose();
             automation.Dispose();
-            if (mainWindow.IsAvailable)
+            try
             {
-                mainWindow.Close();
+                if (mainWindow.IsAvailable)
+                    mainWindow.Close();
+            }
+            catch (FlaUI.Core.Exceptions.MethodNotSupportedException)
+            {
+                // Window was already closed by the test
             }
             conditionFactory = null;
         }

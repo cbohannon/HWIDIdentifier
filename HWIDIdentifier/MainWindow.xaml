@@ -17,7 +17,7 @@
         <Label x:Name="Label_PCName" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,141,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
         <Button x:Name="Button_Identify_ProductID" Content="ProductID" HorizontalAlignment="Left" Margin="22,180,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_ProductID_Click"/>
         <Label x:Name="label_ProductID" Content="" BorderBrush="Gainsboro" BorderThickness="1" HorizontalAlignment="Left" Margin="102,175,0,0" VerticalAlignment="Top" Height="29" Width="277"/>
-        <Button x:Name="Button_Exit" Content="E_xit" HorizontalAlignment="Left" Margin="681,389,0,0" VerticalAlignment="Top" Width="75" Click="Button_Exit_Click"/>
+        <Button x:Name="Button_Exit" Content="E_xit" HorizontalAlignment="Left" Margin="677,383,0,0" VerticalAlignment="Top" Width="75" Click="Button_Exit_Click"/>
         <Button x:Name="Button_Identify_HDD" Content="HDD(S)" HorizontalAlignment="Left" Margin="22,249,0,0" VerticalAlignment="Top" Width="75" Click="Button_Identify_HDD_Click"/>
         <TreeView x:Name="treeView_HDD" HorizontalAlignment="Left" Height="100" Margin="102,209,0,0" VerticalAlignment="Top" Width="277"/>
         <Button x:Name="Button_Spoof_HWID" Content="Spoof HWID" HorizontalAlignment="Left" Margin="384,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Spoof_HWID_Click"/>
@@ -44,7 +44,7 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
-        <Button x:Name="Button_Spoof_HDD" Content="Spoof HDD" HorizontalAlignment="Left" Height="19" Margin="384,250,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Button_Spoof_HDD" Content="Spoof HDD" HorizontalAlignment="Left" Height="19" Margin="384,250,0,0" VerticalAlignment="Top" Width="75" Click="Button_Spoof_HDD_Click"/>
         <TreeView x:Name="treeView_Spoof_HDD" HorizontalAlignment="Left" Height="99" Margin="464,210,0,0" VerticalAlignment="Top" Width="277"/>
     </Grid>
 </Window>
