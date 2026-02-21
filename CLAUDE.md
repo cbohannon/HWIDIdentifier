@@ -52,7 +52,7 @@ dotnet test HWIDIdentifier.sln --settings HWIDIdentifier.runsettings --collect:"
 
 - **`ReadHelper.cs`** — Static nested classes to read hardware values from the Windows Registry (`ReadHelper.HWID`, `ReadHelper.PCGuid`, `ReadHelper.PCName`, `ReadHelper.ProductId`, `ReadHelper.GetWindowsProductKey()`)
 - **`WriteHelper.cs`** — Static nested classes to generate/spoof new hardware values (`WriteHelper.HWID.SpoofHWID()`, `WriteHelper.PCGuid.SpoofPCGuid()`, etc.)
-- **`GenericHelper.cs`** — Registry access wrapper (`GenericHelper.Regedit`) and random alphanumeric string generator (`GenericHelper.RandomGenerator`)
+- **`GenericHelper.cs`** — Registry access wrapper (`GenericHelper.Regedit`) and random alphanumeric string generator (`GenericHelper.RandomGenerator`). `Regedit` accepts an optional `RegistryHive` parameter (defaults to `RegistryHive.LocalMachine`).
 - **`MainWindow.xaml/.cs`** — WPF UI with buttons wired to Read/Write helpers; HDD enumeration uses `ManagementObjectSearcher`
 
 ### Registry Paths Used
@@ -67,9 +67,15 @@ HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion                          → P
 ### Patterns
 
 - Static nested classes used for all read/write operations (e.g., `ReadHelper.HWID.GetValue()`)
-- Registry errors return error strings rather than throwing exceptions
+- Registry errors return `"Error - ..."` strings rather than throwing exceptions; callers should check for this prefix
+- Write operations require the application to run as Administrator
+- `Prefer32Bit` is set to `false` in the main project — required for 64-bit registry access (e.g., `MachineGuid`)
 - log4net is configured via `log4net.config` with a rolling file (`HWIDSpoofer.log`) and console appender
 - UI automation tests (FlaUITests) launch the actual compiled WPF executable and use FlaUI UIA3
+
+### Test Isolation
+
+Unit tests that exercise write operations use a temporary `HKEY_CURRENT_USER\Software\HWIDIdentifierTest` key to avoid writing to real system registry values and to avoid requiring Administrator privileges. `TestInitialize` creates the key and redirects `WriteHelper.*. regeditObject` fields to it; `TestCleanup` restores the originals and deletes the key.
 
 ### Key Dependencies
 
